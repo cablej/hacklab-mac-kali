@@ -15,7 +15,11 @@ start_x11() {
 
 start_container() {
 	start_x11
-	docker run -dti --name $container -e DISPLAY=$ip:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v kali:/home cablej/hacklab-mac-kali > /dev/null
+	if [ ! -d "kali" ]
+	then
+		mkdir kali
+	fi
+	docker run -dti --name $container -e DISPLAY=$ip:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v ./kali:/home cablej/hacklab-mac-kali
 }
 
 case "$1" in
@@ -50,7 +54,7 @@ case "$1" in
 			fi
 			start_x11
 		fi
-		docker exec -it $container /bin/bash # -c /on_run.sh
+		docker exec -it $container /bin/bash -c /on_run.sh
 	;;
 	"stop")
 		docker stop $container
