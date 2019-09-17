@@ -1,12 +1,26 @@
 # hacklab-mac-kali
 
-Runs kali linux in a docker container on MacOS, with GUI applications supported.
+Runs a kali linux virtual machine in a docker container on MacOS, with GUI applications supported.
 
 Installation:
 
-1. [Install Docker](https://docs.docker.com/docker-for-mac/install/)
-2. [Install XQuartz](https://www.xquartz.org)
-3. Clone this repository: `git clone https://github.com/cablej/hacklab-mac-kali`
-4. Run `./kali.sh run`
+1. Install Docker: https://docs.docker.com/docker-for-mac/install/
+2. Install XQuartz in order to run GUI applications: https://www.xquartz.org
+3. Clone this repository: `git clone https://github.com/cablej/hacklab-mac-kali` (you may need to first [install git](https://git-scm.com/book/en/v1/Getting-Started-Installing-Git#Installing-on-Mac))
+4. Enter the directory: `cd hacklab-mac-kali`
+4. Run `./kali.sh run` in order to set up the machine and open a shell
 
-From here, the container will be good to go. You can run `./kali.sh run` to open a new shell into the container, and it will launch the container if needed.
+`./kali.sh run` will be your go-to command, and automatically installs/starts the machine if needed. You can run `./kali.sh run` in multiple terminal windows/tabs in order to open multiple shells.
+
+The machine comes with all of the tools you should need. For instance, to run Firefox and Burpsuite, run open two shells using `./kali.sh run` in two different windows. Run `firefox` in one window and `burpsuite` in the other, and both will open their GUI applications.
+
+Other `kali.sh` commands which may be useful:
+
+```
+./kali.sh run     - opens a shell in the vm and initializes if needed
+./kali.sh stop    - stops the vm
+./kali.sh start   - starts the vm (run will do this automatically)
+./kali.sh init    - initializes the vm (run will do this automatically)
+./kali.sh status  - status of the vm
+./kali.sh restart - restarts the vm container
+ ```
