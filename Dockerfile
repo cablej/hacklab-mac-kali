@@ -19,6 +19,12 @@ RUN rm -rf /usr/bin/burpsuite
 
 RUN wget -O /burpsuite "https://portswigger.net/burp/releases/download?product=community&version=2.1.02&type=jar" && echo "java -jar /burpsuite" > /bin/burpsuite
 
-COPY on_run.sh . && chmod +x on_run.sh
+RUN chmod +x /bin/burpsuite
+
+RUN apt-get -y install gpa gnupg2
+
+COPY on_run.sh .
+
+RUN chmod +x on_run.sh
 
 RUN echo "firefox-esr" > /bin/firefox
