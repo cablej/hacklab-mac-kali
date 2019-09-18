@@ -5,7 +5,15 @@ deb http://security.debian.org/ stretch/updates main" >> /etc/apt/sources.list
 
 RUN apt-get -y update && apt-get -y dist-upgrade && apt-get clean
 
-RUN apt-get -y install firefox-esr kali-linux-top10 set dnsutils gpa gnupg2 hashcat
+RUN apt-get -y install firefox-esr
+
+RUN apt-get -y install kali-linux-top10
+
+RUN apt-get -y install set
+
+RUN apt-get -y install dnsutils
+
+RUN apt-get -y install hashcat
 
 RUN rm -rf /usr/bin/burpsuite
 
