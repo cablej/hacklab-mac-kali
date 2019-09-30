@@ -19,7 +19,7 @@ start_container() {
 	then
 		mkdir kali
 	fi
-	docker run -dti --name $container -e DISPLAY=$ip:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd)/kali:/home cablej/hacklab-mac-kali
+	docker run -dti --name $container -e DISPLAY=$ip:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v home:/home cablej/hacklab-mac-kali
 }
 
 case "$1" in
