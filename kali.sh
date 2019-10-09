@@ -9,8 +9,7 @@ check_is_running() {
 }
 
 start_x11() {
-	ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-	xhost + $ip > /dev/null
+	xhost + > /dev/null
 }
 
 start_container() {
@@ -63,7 +62,8 @@ case "$1" in
 		docker start $container
 	;;
 	"restart")
-		docker restart $container > /dev/null
+		docker rm -f $container
+		start_container
 	;;
 	"")
 		echo -e "Usage:
