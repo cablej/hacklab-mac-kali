@@ -9,7 +9,8 @@ check_is_running() {
 }
 
 start_x11() {
-	xhost + > /dev/null
+	ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+	xhost + $ip > /dev/null
 }
 
 start_container() {
