@@ -8,6 +8,10 @@ check_is_running() {
 	docker ps | grep $container > /dev/null
 }
 
+check_in_shell() {
+	docker exec -it kali ps aux | grep /bin/bash
+}
+
 start_x11() {
 	ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
 	xhost + $ip > /dev/null
@@ -19,7 +23,6 @@ start_container() {
 	then
 		mkdir kali
 	fi
-	echo "--- Welcome to Kali ---"
 	docker run -dti --name $container -e DISPLAY=$ip:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v home:/home cablej/hacklab-mac-kali > /dev/null
 }
 
@@ -48,10 +51,15 @@ case "$1" in
 		then
 			start_container
 		else
-			docker rm -f $container > /dev/null
-			start_container
+			check_in_shell
+			if [ $? != 0 ]
+			then
+				docker rm -f $container > /dev/null
+				start_container
+			fi
 			start_x11
 		fi
+		echo "--- Welcome to Kali ---"
 		docker exec -it $container /bin/bash -c /on_run.sh
 	;;
 	"stop")
