@@ -19,7 +19,8 @@ start_container() {
 	then
 		mkdir kali
 	fi
-	docker run -dti --name $container -e DISPLAY=$ip:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v home:/home cablej/hacklab-mac-kali
+	echo "--- Welcome to Kali ---"
+	docker run -dti --name $container -e DISPLAY=$ip:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v home:/home cablej/hacklab-mac-kali > /dev/null
 }
 
 case "$1" in
@@ -47,11 +48,8 @@ case "$1" in
 		then
 			start_container
 		else
-			check_is_running
-			if [ $? != 0 ]
-			then
-				docker start $container
-			fi
+			docker rm -f $container > /dev/null
+			start_container
 			start_x11
 		fi
 		docker exec -it $container /bin/bash -c /on_run.sh
