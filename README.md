@@ -7,10 +7,11 @@ Runs a kali linux virtual machine in a docker container on MacOS, with GUI appli
 1. Install Docker: https://docs.docker.com/docker-for-mac/install/
 2. Install XQuartz in order to run GUI applications: https://www.xquartz.org
 3. Once XQuartz is installed, visit XQuartz -> Preferences -> Security and check "Allow connections from network clients".
-4. Restart your computer to allow XQuartz to properly configure
+4. Log out and log back in to allow XQuartz to properly configure
 5. Clone this repository: `git clone https://github.com/cablej/hacklab-mac-kali` (you may need to first [install git](https://git-scm.com/book/en/v1/Getting-Started-Installing-Git#Installing-on-Mac))
 6. Enter the directory: `cd hacklab-mac-kali`
-7. Run `./kali.sh run` in order to set up the machine and open a shell
+7. Ensure that Docker is running
+8. Run `./kali.sh run` in order to set up the machine and open a shell
 
 ### Details
 
