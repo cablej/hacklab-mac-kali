@@ -4,6 +4,7 @@ Runs a kali linux virtual machine in a docker container on MacOS, with GUI appli
 
 ## Installation
 
+1. Install Rosetta by running the command `softwareupdate --install-rosetta`. This allows you to run apps built for Intel on the M1 mac.
 1. Install Docker: https://docs.docker.com/docker-for-mac/install/
 2. Install XQuartz in order to run GUI applications: https://www.xquartz.org
 3. Once XQuartz is installed, visit XQuartz -> Preferences -> Security and check "Allow connections from network clients".
